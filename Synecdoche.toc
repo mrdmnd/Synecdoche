@@ -1,0 +1,10 @@
+## Interface: 110100
+
+## Title: Synecdoche
+## Author: Synecdosneak
+## Version: 11.1.0.0
+## Notes: Determine encounter state and provide optimal information for character policy planning.
+## DefaultState: Enabled
+## LoadOnDemand: 0
+
+Lib/LibStub/LibStub.lua
