@@ -8,3 +8,5 @@
 ## LoadOnDemand: 0
 
 Lib/LibStub/LibStub.lua
+
+Main.lua

@@ -1,0 +1,28 @@
+This repository contains a World of Warcraft (WoW) LUA addon.
+The World of Warcraft LUA environment / virtual machine is a bit different than the usual server-side LUA environments.
+
+This particular addon is designed to be used by a player to determine the optimal policy for their character.
+
+Here are some important rules:
+- The World of Warcraft LUA environment is not a POSIX, Windows, or Linux environment.
+- The World of Warcraft LUA environment is a proprietary environment, which cannot perform file reads, writes, network access, etc. It's a sandboxed environment.
+- The World of Warcraft LUA environment cannot import libraries from the outside world, so you cannot use external libraries.
+- The available LUA version is 5.1. Do not use features that are not available in LUA 5.1, either from the standard library or from other libraries.
+- The world of warcraft API does not provide all standard lua functions. 
+
+Events:
+Much of World of Warcraft is based on *events*. For example, some events that you can subscribe to are:
+- "UNIT_SPELL_CAST_START": when a unit around you starts casting a spell
+- "UPDATE_MOUSEOVER_UNIT": when you hover over a unit
+- "PLAYER_STARTED_MOVING": when you start moving
+There are many other events not listed here.
+
+Frames:
+To listen to an event, we first need to create a Frame. Almost everything in WoW is a Frame. 
+Frames are nested. The "master" frame is called UIParent. Every other frame of the WoW UI was put explicitly into UIParent (or implicitly, by putting it into a frame which already is inside UIParent).
+Frames follow a basic layout system, called FrameStrata. These settings establish the frame order management, i. e. which frame should overlap another frame when shown at the same time. 
+We can subscribe to events on a frame, and the frame can execute handler functions when a subscribed event occurs.
+
+Combat Log:
+The combat log is a log of combat actions and results. Events in the combat log are called "combat log events".
+You can subscribe to COMBAT_LOG_EVENT_UNFILTERED to get all combat log events, and handle them appropriately.
